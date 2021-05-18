@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, makeStyles, Typography } from '@material-ui/core'
 import TwitterIcon from '@material-ui/icons/Twitter'
-import { ModalBlock } from '../Components/ModalBlock'
+import { ModalBlock, SignIn, SignUp } from '../Components/ModalBlock'
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -59,9 +59,31 @@ const useStyles = makeStyles((theme) => ({
 
 function Signin() {
     const classes = useStyles()
+    const [open, setOpen] = React.useState(false)
+    const [visibleModal, setVisibleModal] =
+        React.useState<'signIn' | 'signUp'>()
+
+    const handleClickOpenModalSignUp = (): void => {
+        setVisibleModal('signUp')
+        setOpen(true)
+    }
+    const handleClickOpenModalSignIn = (): void => {
+        setVisibleModal('signIn')
+        setOpen(true)
+    }
+    const handleClose = (): void => {
+        setOpen(false)
+    }
+
     return (
         <div className={classes.wrapper}>
-            <ModalBlock />
+            <ModalBlock open={open} handleClose={handleClose}>
+                {visibleModal === 'signIn' ? (
+                    <SignIn handleClose={handleClose} />
+                ) : (
+                    <SignUp handleClose={handleClose} />
+                )}
+            </ModalBlock>
             <section className={classes.blueSide}>
                 <TwitterIcon className={classes.blueSideIcon} />
                 <img
@@ -94,10 +116,16 @@ function Signin() {
                             variant="contained"
                             color="primary"
                             fullWidth
+                            onClick={handleClickOpenModalSignUp}
                         >
                             Зарегистрироваться
                         </Button>
-                        <Button variant="outlined" color="primary" fullWidth>
+                        <Button
+                            onClick={handleClickOpenModalSignIn}
+                            variant="outlined"
+                            color="primary"
+                            fullWidth
+                        >
                             Войти
                         </Button>
                     </div>

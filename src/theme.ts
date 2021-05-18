@@ -54,22 +54,31 @@ const theme = createMuiTheme({
                     borderBottomWidth: '2px',
                 },
                 '&:before': {
-                    borderColor: '#000',
+                    borderColor: 'red',
                     borderBottomWidth: '2px',
                 },
             },
             input: {
                 backgroundColor: 'rgb(245,248,250)',
+                color: 'red',
+            },
+        },
+        MuiInputBase: {
+            input: {
+                border: '1px solid rgb(196, 207, 214)',
+                borderRadius: 4,
+                borderWidth: 1,
             },
         },
         MuiDialog: {
             paper: {
-                borderRadius: 15,
+                borderRadius: 16,
             },
         },
         MuiDialogActions: {
             root: {
-                marginBottom: 8,
+                padding: '8px 24px',
+                marginBottom: 20,
             },
         },
         MuiDialogTitle: {
