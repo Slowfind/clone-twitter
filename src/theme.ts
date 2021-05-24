@@ -29,6 +29,9 @@ const theme = createMuiTheme({
         background: {
             default: '#fff',
         },
+        text: {
+            primary: '#0F1419',
+        },
     },
     // shadows: [],
     overrides: {
@@ -37,8 +40,8 @@ const theme = createMuiTheme({
                 borderRadius: 30,
                 textTransform: 'none',
                 fontSize: 16,
-                height: 48,
                 fontWeight: 700,
+                padding: '10px 16px',
             },
             textPrimary: {
                 paddingLeft: 20,
@@ -46,8 +49,17 @@ const theme = createMuiTheme({
             },
             outlinedPrimary: {
                 borderColor: 'rgb(29,161,243)',
+                padding: '10px 16px',
+            },
+            contained: {
+                '&.Mui-disabled': {
+                    color: '#fff',
+                    opacity: 0.5,
+                    backgroundColor: 'rgb(29,161,242)',
+                },
             },
         },
+
         MuiFilledInput: {
             underline: {
                 '&:after': {
@@ -60,14 +72,51 @@ const theme = createMuiTheme({
             },
             input: {
                 backgroundColor: 'rgb(245,248,250)',
-                color: 'red',
+            },
+        },
+        MuiInput: {
+            underline: {
+                '&:before': {
+                    content: 'none',
+                },
+                '&:after': {
+                    content: 'none',
+                },
+            },
+        },
+        MuiInputLabel: {
+            formControl: {
+                left: 8,
+                transform: 'translate(0, 36px) scale(1)',
+            },
+            shrink: {
+                transform: 'translate(0, 21px) scale(0.75)',
             },
         },
         MuiInputBase: {
             input: {
                 border: '1px solid rgb(196, 207, 214)',
                 borderRadius: 4,
-                borderWidth: 1,
+                padding: '24px 8px 12px 8px',
+                '&:focus': {
+                    borderColor: 'rgb(29 161 242)',
+                    boxShadow: '0 0 0 1px rgb(29 161 242)',
+                },
+            },
+        },
+        MuiIconButton: {
+            root: {
+                color: 'rgb(15, 20, 25)',
+                borderRadius: '9999px',
+                '&:hover': {
+                    backgroundColor: 'rgba(29,161,242,0.1)',
+                    color: 'rgb(29,161,242)',
+                },
+            },
+            colorPrimary: {
+                '&:hover': {
+                    backgroundColor: 'rgba(29, 161, 242, 0.1)',
+                },
             },
         },
         MuiDialog: {

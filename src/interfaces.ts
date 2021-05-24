@@ -6,3 +6,7 @@ export interface ModalProps {
 export interface ModalSign {
     handleClose: () => void
 }
+export interface ModalTweet {
+    handleClose: () => void
+    classes: any
+}

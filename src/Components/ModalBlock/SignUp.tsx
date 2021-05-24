@@ -17,21 +17,13 @@ const SignUp: React.FC<ModalSign> = ({ handleClose }) => {
                 </Typography>
                 <TextField
                     autoFocus
-                    margin="dense"
                     id="name"
                     label="Name"
                     type="name"
                     fullWidth
                 />
+                <TextField id="email" label="Email" type="email" fullWidth />
                 <TextField
-                    margin="dense"
-                    id="email"
-                    label="Email"
-                    type="email"
-                    fullWidth
-                />
-                <TextField
-                    margin="dense"
                     id="password"
                     label="password"
                     type="password"

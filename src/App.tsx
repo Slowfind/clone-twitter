@@ -1,12 +1,15 @@
 import React from 'react'
-import Signin from './pages/Signin'
+import { Route, Switch } from 'react-router-dom'
+import { Home } from './pages/Home/Home'
+import { Signin } from './pages/SignIn/Signin'
 
-function App() {
+export const App: React.FC = () => {
     return (
         <div className="App">
-            <Signin />
+            <Switch>
+                <Route exact path="/" component={Signin} />
+                <Route exact path="/home" component={Home} />
+            </Switch>
         </div>
     )
 }
-
-export default App
