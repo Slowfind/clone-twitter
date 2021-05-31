@@ -2,38 +2,27 @@ import { Avatar, Grid, IconButton } from '@material-ui/core'
 import { ChatBubbleOutline, Repeat, FavoriteBorder, Reply } from '@material-ui/icons'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useHomeStyles } from '../../pages/Home/style'
-interface classes {
-    classes: ReturnType<typeof useHomeStyles>
-}
-export const TweetItem: React.FC<classes> = ({ classes }: classes) => {
+import { TweetProps } from '../../interfaces'
+
+export const TweetItem: React.FC<TweetProps> = ({ _id, text, user, classes }: TweetProps) => {
     return (
-        <div className={classes.tweetsItem}>
+        <Link to={`/home/tweet/${_id}`} className={classes.tweetsItem}>
             <div className={classes.tweetsAvatar}>
-                <Link to="/">
-                    <Avatar
-                        className={classes.normal}
-                        alt="Armin van Buuren"
-                        src="https://pbs.twimg.com/profile_images/1315647532438085632/tqSEjOJB_normal.jpg"
-                    />
-                </Link>
+                <Avatar className={classes.normal} alt={user.username} src={user.avatarUrl} />
             </div>
             <div className={classes.tweetsContent}>
                 <div className={classes.tweetsHeader}>
-                    <Link className={classes.tweetsLink} to="/">
-                        <span className={classes.tweetsName}>Armin van Buuren</span>
-                        <span className={classes.tweetsNickName}>@arminvanbuuren</span>
-                    </Link>
+                    <div className={classes.tweetsLink}>
+                        <span className={classes.tweetsName}>{user.fullname}</span>
+                        <span className={classes.tweetsNickName}>@{user.username}</span>
+                    </div>
                     <span className={classes.tweetsDelimetr}>·</span>
-                    <Link className={classes.tweetsTimeLink} to="/">
+                    <div className={classes.tweetsTimeLink}>
                         <time className={classes.tweetsTime}>18 мая</time>
-                    </Link>
+                    </div>
                 </div>
                 <div className={classes.tweetsWysiwyg}>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae mollitia aspernatur culpa maxime aperiam. Saepe
-                        et accusantium placeat qui voluptates, nobis temporibus eveniet. Vitae autem esse nobis dignissimos ad excepturi!
-                    </p>
+                    <p>{text}</p>
                 </div>
 
                 <Grid container spacing={3}>
@@ -63,6 +52,6 @@ export const TweetItem: React.FC<classes> = ({ classes }: classes) => {
                     </Grid>
                 </Grid>
             </div>
-        </div>
+        </Link>
     )
 }

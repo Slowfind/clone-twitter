@@ -8,7 +8,7 @@ export const App: React.FC = () => {
         <div className="App">
             <Switch>
                 <Route exact path="/" component={Signin} />
-                <Route exact path="/home" component={Home} />
+                <Route path="/home" component={Home} />
             </Switch>
         </div>
     )

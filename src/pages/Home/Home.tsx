@@ -1,13 +1,31 @@
-import { Avatar, Button, Container, Grid, Input, Typography } from '@material-ui/core'
+import { Container, Grid, Typography } from '@material-ui/core'
 import React from 'react'
-import SearchIcon from '@material-ui/icons/Search'
+import { useDispatch, useSelector } from 'react-redux'
+import { Route } from 'react-router'
+
 import { SideMenu } from '../../Components/SideBlock/SideMenu'
-import { Main } from '../../Components/Main/Main'
-import { Link } from 'react-router-dom'
 import { useHomeStyles } from './style'
+import { fetchTweets } from '../../store/ducks/tweets/actionCreators'
+import { selectIsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors'
+import { Search } from '../../Components/Search/Search'
+import { Themes } from '../../Components/Themes/Themes'
+import { WhomToRead } from '../../Components/Themes/WhomToRead'
+import { TweetItem } from '../../Components/TweetItem/TweetItem'
+import { TweetForm } from '../../Components/TweetForm/TweetForm'
+import { Loader } from '../../Components/Loader/Loader'
+import { GoBack } from '../../Components/GoBack/GoBack'
+import { TweetDetail } from '../../Components/TweetDetail/TweetDetail'
 
 export const Home: React.FC = () => {
     const classes = useHomeStyles()
+    const dispatch = useDispatch()
+    const tweets = useSelector(selectTweetsItems)
+    const isLoading = useSelector(selectIsLoading)
+
+    React.useEffect(() => {
+        dispatch(fetchTweets())
+    }, [dispatch])
+
     return (
         <Container maxWidth="lg">
             <Grid container spacing={3}>
@@ -15,73 +33,44 @@ export const Home: React.FC = () => {
                     <SideMenu classes={classes} />
                 </Grid>
                 <Grid item xs={6} sm={6}>
-                    <Main classes={classes} />
+                    <div className={classes.main}>
+                        <div className={classes.mainHeader}>
+                            <Route path="/home/:any">
+                                <GoBack />
+                            </Route>
+                            <Route path={['/home', '/home/search']} exact>
+                                <Typography className={classes.mainTitle} variant="h6">
+                                    Твиты
+                                </Typography>
+                            </Route>
+                            <Route path="/home/tweet">
+                                <Typography className={classes.mainTitle} variant="h6">
+                                    Твит
+                                </Typography>
+                            </Route>
+                        </div>
+
+                        <Route path={['/home', '/home/search']} exact>
+                            <div className={classes.tweet}>
+                                <TweetForm />
+                            </div>
+                        </Route>
+
+                        <div className={classes.tweetMargin}></div>
+                        <Route path="/home" exact>
+                            <section className={classes.tweets}>
+                                {isLoading ? <Loader /> : tweets.map((tweet) => <TweetItem key={tweet._id} {...tweet} classes={classes} />)}
+                            </section>
+                        </Route>
+
+                        <Route path="/home/tweet/:id" component={TweetDetail} exact />
+                    </div>
                 </Grid>
                 <Grid item xs={6} sm={3}>
                     <div className={classes.sidebar}>
-                        <div className={classes.search}>
-                            <div className={classes.searchWrapper}>
-                                <div className={classes.searchIcon}>
-                                    <SearchIcon />
-                                </div>
-                                <div className={classes.searchBox}>
-                                    <Input
-                                        className={classes.searchInput}
-                                        placeholder="Поиск в твиттере"
-                                        error
-                                        inputProps={{ 'aria-label': 'description' }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className={classes.box}>
-                            <Typography className={classes.listTitle} variant="h6">
-                                <strong>Актуальные темы</strong>
-                            </Typography>
-                            <ul className={classes.listReset}>
-                                <li className={classes.listItem}>
-                                    <Link to="/">
-                                        <span className={classes.tweetsName}>#Короновирус</span>
-                                        <span className={classes.tweetsNickName}>Твитов: 1 650</span>
-                                    </Link>
-                                </li>
-                                <li className={classes.listItem}>
-                                    <Link to="/">
-                                        <span className={classes.tweetsName}>Москва</span>
-                                        <span className={classes.tweetsNickName}>Твитов: 2 650</span>
-                                    </Link>
-                                </li>
-                                <li className={classes.listItem}>
-                                    <Link to="/">
-                                        <span className={classes.tweetsName}>Путин</span>
-                                        <span className={classes.tweetsNickName}>Твитов: 650</span>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className={classes.box}>
-                            <Typography className={classes.listTitle} variant="h6">
-                                <strong>Кого читать</strong>
-                            </Typography>
-                            <ul className={classes.listReset}>
-                                <li className={classes.listItem}>
-                                    <Link to="/">
-                                        <Avatar
-                                            className={classes.normal}
-                                            alt="Armin van Buuren"
-                                            src="https://pbs.twimg.com/profile_images/1315647532438085632/tqSEjOJB_normal.jpg"
-                                        />
-                                        <div className={classes.listItemInfoBox}>
-                                            <span className={classes.tweetsName}>Armin van Buuren</span>
-                                            <span className={classes.tweetsNickName}>@arminvanbuuren</span>
-                                        </div>
-                                        <Button size="small" variant="outlined" color="primary">
-                                            Читать
-                                        </Button>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                        <Search classes={classes} />
+                        <Themes classes={classes} />
+                        <WhomToRead classes={classes} />
                     </div>
                 </Grid>
             </Grid>

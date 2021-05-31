@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Typography } from '@material-ui/core'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import { ModalBlock, SignIn, SignUp } from '../../Components/ModalBlock'
-import { useStyles } from '../SignIn/styles'
+import { useStyles } from './style'
 
 export const Signin: React.FC = () => {
     const classes = useStyles()

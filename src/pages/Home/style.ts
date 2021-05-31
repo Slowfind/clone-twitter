@@ -45,13 +45,19 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         minHeight: '100vh',
         height: '100%',
     },
-    mainTitle: {
-        padding: 16,
+    mainHeader: {
+        padding: '0 16px',
         borderBottom: '1px solid rgb(235, 238, 240)',
         position: 'sticky',
         top: 0,
         backgroundColor: '#fff',
         zIndex: 9,
+        display: 'flex',
+        alignItems: 'center',
+    },
+    mainTitle: {
+        fontWeight: 700,
+        padding: '16px 0',
     },
     tweet: {
         padding: '10px 16px',
@@ -62,6 +68,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         display: 'flex',
         cursor: 'pointer',
         transition: '.3s ease-in-out',
+        textDecoration: 'none!important',
+        color: 'inherit',
         '&:hover': {
             backgroundColor: 'rgba(0, 0, 0, 0.03)',
         },
@@ -172,6 +180,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         marginBottom: 16,
         borderRadius: 16,
         overflow: 'hidden',
+        backgroundColor: '#F7F9FA',
     },
     listReset: {
         listStyle: 'none',
@@ -181,11 +190,9 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     listTitle: {
         padding: '12px 16px',
         color: 'rgb(15, 20, 25)',
-        backgroundColor: '#F7F9FA',
         borderBottom: '1px solid rgb(235, 238, 240)',
     },
     listItem: {
-        backgroundColor: '#F7F9FA',
         borderBottom: '1px solid rgb(235, 238, 240)',
         padding: '12px 16px',
         cursor: 'pointer',
