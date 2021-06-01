@@ -1,9 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { ThemeApi } from '../../../services/api/themeApi'
-import { setTheme, setThemeLoading, ThemeActionsType } from './actionCreators'
+import { delay } from '../../store'
+import { setTheme, setThemeLoading } from './actionCreators'
+import { ThemeActionsType } from './contracts/actionTypes'
 import { LoadingState } from './contracts/state'
 
-const delay = (time: number) => new Promise((resolve) => setTimeout(resolve, time))
 export function* fetchThemeRequest(): any {
     try {
         const items = yield call(ThemeApi.fetchTheme)

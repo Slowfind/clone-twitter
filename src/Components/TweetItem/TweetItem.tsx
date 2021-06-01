@@ -24,8 +24,7 @@ export const TweetItem: React.FC<TweetProps> = ({ _id, text, user, classes }: Tw
                 <div className={classes.tweetsWysiwyg}>
                     <p>{text}</p>
                 </div>
-
-                <Grid container spacing={3}>
+                <Grid container>
                     <Grid item xs={1} sm={3}>
                         <IconButton>
                             <ChatBubbleOutline className={classes.tweetsActionsIcon}></ChatBubbleOutline>

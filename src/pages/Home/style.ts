@@ -64,21 +64,48 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     },
     tweets: {},
     tweetsItem: {
-        padding: '12px 16px',
+        padding: '12px 16px 6px',
         display: 'flex',
         cursor: 'pointer',
         transition: '.3s ease-in-out',
         textDecoration: 'none!important',
         color: 'inherit',
+        borderBottom: '1px solid rgb(235, 238, 240)',
         '&:hover': {
             backgroundColor: 'rgba(0, 0, 0, 0.03)',
         },
+        '& .MuiIconButton-root': {
+            color: 'rgb(91, 112, 131)',
+        },
+    },
+    tweetDetail: {
+        '& $tweetsHeader': {
+            alignItems: 'center',
+        },
+        '& $tweetsName , $tweetsNickName': {
+            display: 'block',
+        },
+        '& $tweetsWysiwyg': {
+            fontSize: 23,
+            lineHeight: 1.3,
+        },
+        '& $tweetsTimeLink': {
+            borderTop: '1px solid rgb(235, 238, 240)',
+            padding: '16px 0',
+        },
+        '& .MuiGrid-container': {
+            borderTop: '1px solid rgb(235, 238, 240)',
+            paddingTop: 6,
+            textAlign: 'center',
+        },
     },
     tweetsAvatar: {
-        width: 48,
+        minWidth: 48,
         marginRight: 12,
     },
-    tweetsContent: {},
+    tweetsContent: {
+        width: '100%',
+    },
     tweetsHeader: {
         display: 'flex',
         flexWrap: 'wrap',

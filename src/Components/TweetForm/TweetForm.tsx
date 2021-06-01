@@ -9,15 +9,21 @@ import ImageIcon from '@material-ui/icons/Image'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { useTweet } from './styles'
+import { useDispatch } from 'react-redux'
+import { fetchAddTweet } from '../../store/ducks/tweets/actionCreators'
 
 const MAX_LENGTH: number = 280
 export const TweetForm: React.FC = () => {
+    const dispatch = useDispatch()
     const classes = useTweet()
     const [text, setText] = React.useState('')
     const textCount = MAX_LENGTH - text.length
     const textLimitPercent = Math.round((text.length / 280) * 100)
+
     const handleChangeText = (e: React.FormEvent<HTMLTextAreaElement>) => e.currentTarget && setText(e.currentTarget.value)
+
     const handleClickAddTweet = (): void => {
+        dispatch(fetchAddTweet(text))
         setText('')
     }
 
@@ -37,7 +43,7 @@ export const TweetForm: React.FC = () => {
                     <TextareaAutosize
                         onChange={handleChangeText}
                         value={text}
-                        rowsMin={4}
+                        rowsMin={3}
                         aria-label="empty textarea"
                         placeholder="Что происходит?"
                     />
@@ -78,7 +84,7 @@ export const TweetForm: React.FC = () => {
 
                         <Button
                             onClick={handleClickAddTweet}
-                            disabled={text.length >= MAX_LENGTH}
+                            disabled={!text || text.length >= MAX_LENGTH}
                             size="large"
                             color="primary"
                             variant="contained"

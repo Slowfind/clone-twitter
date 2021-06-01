@@ -14,6 +14,8 @@ declare global {
 
 const sagaMiddleware = createSagaMiddleware()
 
+export const delay = (time: number) => new Promise((resolve) => setTimeout(resolve, time))
+
 export interface RootState {
     tweets: TweetsState
     themes: ThemesState

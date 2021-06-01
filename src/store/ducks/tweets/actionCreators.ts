@@ -1,24 +1,13 @@
-import { Action } from 'redux'
-import { LoadingState, TweetsState } from './contracts/state'
-
-export enum TweetsActionsType {
-    SET_TWEETS = 'tweets/SET_TWEETS',
-    FETCH_TWEETS = 'tweets/FETCH_TWEETS',
-    SET_LOADING = 'tweets/SET_LOADING',
-}
-export interface SetTweetsActionInterface extends Action<TweetsActionsType> {
-    type: TweetsActionsType.SET_TWEETS
-    payload: TweetsState['items']
-}
-
-export interface SetTweetsLoadingStateActionInterface extends Action<TweetsActionsType> {
-    type: TweetsActionsType.SET_LOADING
-    payload: LoadingState
-}
-
-export interface FetchTweetsActionInterface extends Action<TweetsActionsType> {
-    type: TweetsActionsType.FETCH_TWEETS
-}
+import {
+    SetTweetsActionInterface,
+    TweetsActionsType,
+    SetTweetsLoadingStateActionInterface,
+    FetchTweetsActionInterface,
+    FetchAddTweetsActionInterface,
+    AddTweetsActionInterface,
+    SetAddFormStateActionInterface,
+} from './contracts/actionTypes'
+import { AddTweetState, LoadingState, Tweet, TweetsState } from './contracts/state'
 
 export const setTweets = (payload: TweetsState['items']): SetTweetsActionInterface => ({
     type: TweetsActionsType.SET_TWEETS,
@@ -34,4 +23,25 @@ export const fetchTweets = (): FetchTweetsActionInterface => ({
     type: TweetsActionsType.FETCH_TWEETS,
 })
 
-export type TweetsActions = SetTweetsActionInterface | SetTweetsLoadingStateActionInterface | FetchTweetsActionInterface
+export const fetchAddTweet = (payload: string): FetchAddTweetsActionInterface => ({
+    type: TweetsActionsType.FETCH_ADD_TWEET,
+    payload,
+})
+
+export const addTweet = (payload: Tweet): AddTweetsActionInterface => ({
+    type: TweetsActionsType.ADD_TWEET,
+    payload,
+})
+
+export const setAddFormState = (payload: AddTweetState): SetAddFormStateActionInterface => ({
+    type: TweetsActionsType.SET_ADD_FORM_TWEET,
+    payload,
+})
+
+export type TweetsActions =
+    | SetTweetsActionInterface
+    | SetTweetsLoadingStateActionInterface
+    | FetchTweetsActionInterface
+    | AddTweetsActionInterface
+    | FetchAddTweetsActionInterface
+    | SetAddFormStateActionInterface

@@ -54,9 +54,9 @@ export const Home: React.FC = () => {
                             <div className={classes.tweet}>
                                 <TweetForm />
                             </div>
+                            <div className={classes.tweetMargin}></div>
                         </Route>
 
-                        <div className={classes.tweetMargin}></div>
                         <Route path="/home" exact>
                             <section className={classes.tweets}>
                                 {isLoading ? <Loader /> : tweets.map((tweet) => <TweetItem key={tweet._id} {...tweet} classes={classes} />)}

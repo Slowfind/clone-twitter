@@ -1,5 +1,6 @@
 import produce, { Draft } from 'immer'
-import { ThemeActions, ThemeActionsType } from './actionCreators'
+import { ThemeActions } from './actionCreators'
+import { ThemeActionsType } from './contracts/actionTypes'
 import { LoadingState, ThemesState } from './contracts/state'
 
 const initialThemesState: ThemesState = {
