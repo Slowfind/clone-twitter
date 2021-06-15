@@ -101,24 +101,14 @@
       }
     },
     {
-      "_id": "3urbn9zrwbt",
-      "text": "twee",
+      "_id": "o4028kxvhcq",
+      "text": "agagw",
       "user": {
         "fullname": "Tiësto",
         "username": "tiesto",
         "avatarUrl": "https://pbs.twimg.com/profile_images/1334700334594154499/WWYQp7XQ_normal.jpg"
       },
       "id": 11
-    },
-    {
-      "_id": "xok160huz2",
-      "text": "fafafaafaf",
-      "user": {
-        "fullname": "Tiësto",
-        "username": "tiesto",
-        "avatarUrl": "https://pbs.twimg.com/profile_images/1334700334594154499/WWYQp7XQ_normal.jpg"
-      },
-      "id": 12
     }
   ],
   "themes": [

@@ -15,6 +15,7 @@ export const TweetDetail: React.FC = () => {
     const isLoading = useSelector(selectIsLoading)
     const tweetData = useSelector(selectTweetData)
     const id = params.id
+
     React.useEffect(() => {
         id && dispatch(fetchTweet(id))
         return () => {

@@ -11,10 +11,6 @@ const initialTweetsState: TweetsState = {
 
 export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsActions) => {
     switch (action.type) {
-        case TweetsActionsType.SET_TWEETS:
-            draft.items = action.payload
-            draft.loadingState = LoadingState.LOADED
-            break
         case TweetsActionsType.FETCH_TWEETS:
             draft.items = []
             draft.loadingState = LoadingState.LOADING
@@ -22,12 +18,18 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
         case TweetsActionsType.SET_LOADING:
             draft.loadingState = action.payload
             break
-
+        case TweetsActionsType.SET_TWEETS:
+            draft.items = action.payload
+            draft.loadingState = LoadingState.LOADED
+            break
+        case TweetsActionsType.SET_ADD_FORM_TWEET:
+            draft.addTweetFormState = action.payload
+            break
         case TweetsActionsType.FETCH_ADD_TWEET:
             draft.addTweetFormState = AddTweetState.LOADING
             break
         case TweetsActionsType.ADD_TWEET:
-            draft.items.push(action.payload)
+            draft.items.unshift(action.payload)
             draft.addTweetFormState = AddTweetState.NEVER
             break
         default:
